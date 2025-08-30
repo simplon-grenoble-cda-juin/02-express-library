@@ -1,0 +1,6 @@
+<% if (flash && flash.type && flash.message) { %>
+<div class="flash flash-<%= flash.type %>">
+  <p><%= flash.message %></p>
+  <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+</div>
+<% } %>

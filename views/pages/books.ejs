@@ -1,0 +1,12 @@
+<%- include("../partials/head", { title: "Liste des livres" }) %>
+<%- include("../partials/flash", { flash }) %>
+
+<h1 class="book-grid-title">Liste des livres</h1>
+
+<div class="book-grid">
+  <% books.forEach((book) => { %>
+  <a href="/books/<%= book.id %>" class="book-card"><%= book.title %></a>
+  <% }) %>
+</div>
+
+<%- include("../partials/footer") %>

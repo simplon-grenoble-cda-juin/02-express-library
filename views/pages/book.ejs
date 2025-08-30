@@ -1,0 +1,21 @@
+<%- include("../partials/head", { title: book.title }) %>
+
+<main class="book-detail">
+  <h1 class="book-detail-title"><%= book.title %></h1>
+
+  <section class="book-comments">
+    <h2 class="book-comments-title">Commentaires</h2>
+
+    <% if (comments.length === 0) { %>
+    <p class="book-comments-empty">Aucun commentaire pour ce livre.</p>
+    <% } else { %>
+    <ul class="book-comments-list">
+      <% comments.forEach((comment) => { %>
+      <li class="book-comment"><%= comment.message %></li>
+      <% }) %>
+    </ul>
+    <% } %>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>
