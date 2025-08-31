@@ -1,0 +1,27 @@
+<%- include("../../partials/head", { title: author.getFullName() }) %>
+
+<main class="page">
+  <div class="book-detail">
+    <div class="book-detail-header">
+      <h1 class="book-detail-header-title"><%= author.getFullName() %></h1>
+      <div class="book-detail-header-actions">
+      </div>
+    </div>
+    <div class="book-detail-data">
+      <table>
+        <tbody>
+          <tr>
+            <th>Prénom</th>
+            <td><%= author.getFirstName() %></td>
+          </tr>
+          <tr>
+            <th>Nom</th>
+            <td><%= author.getLastName() %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include("../../partials/footer") %>

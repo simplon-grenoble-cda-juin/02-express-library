@@ -1,0 +1,152 @@
+<!-- Si c'est un formulaire de création : adapte le titre de la page -->
+<% if (type === "create") { %>
+  <%- include("../../partials/head", { title: "Création d'un livre" }) %>
+<% } %>
+
+
+<!-- Si c'est un formulaire d'édition : adapte le titre de la page -->
+<% if (type === "edit") { %>
+  <%- include("../../partials/head", { title: "Édition d'un livre" }) %>
+<% } %>
+
+<main class="page">
+  
+    <!-- Si c'est un formulaire de création -->
+    <% if (type === "create") { %>
+    <h1>Ajout d'un livre</h1>
+    <form action="/books/create" method="post" class="book-form">
+
+      <% if (submitError) { %>
+      <p id="title-error" style="color: #f44336">
+        Une erreur est survenue lors de l'ajout du livre
+      </p>
+      <% } %>
+    <% } %>
+  
+
+    <!-- Si c'est un formulaire d'édition -->
+    <% if (type === "edit") { %>
+    <h1>Édition d'un livre</h1>
+    <form action="/books/edit/<%= values?.id  %>" method="post" class="book-form">
+
+      <% if (submitError) { %>
+      <p id="title-error" style="color: #f44336">
+        Une erreur est survenue lors de l'édition du livre
+      </p>
+      <% } %>
+    <% } %>
+
+    <!-- Champ titre -->
+    <div class="book-form-input-wrapper">
+      <label for="title" class="book-form-label">Titre du livre</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        class="book-form-input"
+        value="<%= values?.title || '' %>"
+      />
+      <% if (formErrors?.title?.errors?.[0]) { %>
+      <p id="title-error" style="color: #f44336">
+        <%= formErrors.title.errors[0] %>
+      </p>
+      <% } %>
+    </div>
+
+    <!-- Select Author -->
+    <div class="book-form-input-wrapper">
+      <label for="author_id" class="book-form-label">Auteur</label>
+      <select
+        id="author_id"
+        name="author_id"
+        class="book-form-input"
+      >
+        <option value="">-- Choisir un auteur --</option>
+        <% authors.forEach(author => { %>
+          <option
+            value="<%= author.id %>"
+            <%= values?.author_id == author.id ? 'selected' : '' %>
+          >
+            <%= author.getFirstName() + " " + author.getLastName() %>
+          </option>
+        <% }) %>
+      </select>
+      <% if (formErrors?.author_id?.errors?.[0]) { %>
+      <p id="author-error" style="color: #f44336">
+        <%= formErrors.author_id.errors[0] %>
+      </p>
+      <% } %>
+    </div>
+
+    <!-- Select Publisher -->
+    <div class="book-form-input-wrapper">
+      <label for="publisher_id" class="book-form-label">Éditeur</label>
+      <select
+        id="publisher_id"
+        name="publisher_id"
+        class="book-form-input"
+      >
+        <option value="">-- Choisir un éditeur --</option>
+        <% publishers.forEach(publisher => { %>
+          <option
+            value="<%= publisher.id %>"
+            <%= values?.publisher_id == publisher.id ? 'selected' : '' %>
+          >
+            <%= publisher.name %>
+          </option>
+        <% }) %>
+      </select>
+      <% if (formErrors?.publisher_id?.errors?.[0]) { %>
+      <p id="publisher-error" style="color: #f44336">
+        <%= formErrors.publisher_id.errors[0] %>
+      </p>
+      <% } %>
+    </div>
+
+    <!-- Select Category -->
+    <div class="book-form-input-wrapper">
+      <label for="category_id" class="book-form-label">Catégorie</label>
+      <select
+        id="category_id"
+        name="category_id"
+        class="book-form-input"
+      >
+        <option value="">-- Choisir une catégorie --</option>
+        <% categories.forEach(category => { %>
+          <option
+            value="<%= category.id %>"
+            <%= values?.category_id == category.id ? 'selected' : '' %>
+          >
+            <%= category.getName() %>
+          </option>
+        <% }) %>
+      </select>
+      <% if (formErrors?.category_id?.errors?.[0]) { %>
+      <p id="category-error" style="color: #f44336">
+        <%= formErrors.category_id.errors[0] %>
+      </p>
+      <% } %>
+    </div>
+
+    <!-- Champ année de publication -->
+    <div class="book-form-input-wrapper">
+      <label for="publication_year" class="book-form-label">Année de publication</label>
+      <input
+        id="publication_year"
+        type="number"
+        name="publication_year"
+        class="book-form-input"
+        value="<%= values?.publication_year || '' %>"
+      />
+      <% if (formErrors?.publication_year?.errors?.[0]) { %>
+      <p id="publication-error" style="color: #f44336">
+        <%= formErrors.publication_year.errors[0] %>
+      </p>
+      <% } %>
+    </div>
+
+    <button type="submit" class="book-form-button">Enregistrer</button>
+  </form>
+</main>
+
+<%- include("../../partials/footer") %>

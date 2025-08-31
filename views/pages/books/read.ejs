@@ -1,0 +1,45 @@
+<%- include("../../partials/head", { title: book.getTitle() }) %>
+
+<main class="page">
+  <div class="book-detail">
+    <div class="book-detail-header">
+      <h1 class="book-detail-header-title"><%= book.getTitle() %></h1>
+      <div class="book-detail-header-actions">
+        <a href="/books/edit/<%= book.getId() %>">Éditer le livre</a>
+        <a href="/books/delete/<%= book.getId() %>">Supprimer le livre</a>
+      </div>
+    </div>
+    <div class="book-detail-data">
+      <table>
+        <tbody>
+          <tr>
+            <th>Titre</th>
+            <td><%= book.getTitle() %></td>
+          </tr>
+          <tr>
+            <th>Auteur</th>
+            <td>
+              <a href="/authors/<%= book.getAuthor().getId() %>"
+                ><%= book.getAuthor().getFullName() %></a
+              >
+            </td>
+          </tr>
+          <tr>
+            <th>Éditeur</th>
+            <td><%= book.getPublisher().getName() %></td>
+          </tr>
+          <tr>
+            <th>Publication</th>
+            <td><%= book.getPublicationYear() %></td>
+          </tr>
+          <tr>
+            <th>Catégorie</th>
+            <td><%= book.getCategory().getName() %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include("../../partials/footer") %>
