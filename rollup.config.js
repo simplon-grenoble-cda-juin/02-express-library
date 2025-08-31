@@ -20,8 +20,6 @@ export default {
     }),
     isProduction &&
       terser({
-        // À vous de le configurer pour supprimer les console
-        // (console.log)
         compress: { drop_console: true },
       }),
   ],

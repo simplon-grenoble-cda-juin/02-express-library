@@ -1,0 +1,33 @@
+.flash {
+  position: fixed;
+  top: 73px;
+  right: 24px;
+  min-width: 300px;
+  max-width: 90%;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #fff;
+
+  &-success {
+    background-color: #4caf50;
+  }
+
+  &-error {
+    background-color: #f44336;
+  }
+
+  &-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+}

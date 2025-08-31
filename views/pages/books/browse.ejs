@@ -1,0 +1,32 @@
+<%- include("../../partials/head", { title: "Liste des livres" }) %>
+
+<main class="page">
+  <div class="book-browse">
+    <div class="book-browse-header">
+      <h1>Parcourir les livres</h1>
+      <div class="book-browse-header-actions">
+        <a href="/books/create">Ajouter un livre</a>
+      </div>
+    </div>
+
+    <ul class="book-browse-list">
+      <% books.forEach((book) => { %>
+      <li class="book-browse-list-card">
+        <a href="/books/<%= book.getId() %>" class="book-browse-list-card-link">
+          <article class="book-browse-list-card-link-article">
+            <div class="book-browse-list-card-link-article-header">
+              <h2><%= book.getTitle() %></h2>
+              <p><%= book.getAuthor().getFullName() %></p>
+            </div>
+            <p class="book-browse-list-card-link-article-category">
+              <%= book.getCategory().getName() %>
+            </p>
+          </article>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</main>
+
+<%- include("../../partials/footer") %>
