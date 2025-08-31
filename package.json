@@ -8,7 +8,7 @@
     "dev": "tsx watch index.ts",
     "build:all": "npm run build:css && npm run build:js",
     "build:js": "rollup -c",
-    "build:css": "sass src/scss/ public/css/",
+    "build:css": "sass src/scss:public/css",
     "watch:css": "sass --watch src/scss:public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
