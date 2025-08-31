@@ -1,0 +1,185 @@
+.book-browse {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.book-browse-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.book-browse-header-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 16px;
+}
+.book-browse-header-actions a {
+  text-decoration: none;
+  color: #f6f6f6;
+  background-color: #626262;
+  padding: 8px 16px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+.book-browse-header-actions a:hover {
+  color: #000000;
+  background-color: #eee;
+}
+.book-browse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+.book-browse-list-card-link {
+  display: flex;
+  padding: 16px;
+  color: #000000;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+.book-browse-list-card-link:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+.book-browse-list-card-link-article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.book-browse-list-card-link-article-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.book-browse-list-card-link-article-body {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.book-browse-list-card-link-article-category {
+  padding: 2px 8px;
+  width: max-content;
+  border-radius: 24px;
+  background-color: #ddd;
+  box-sizing: border-box;
+}
+.book-browse-list-card h2 {
+  font-size: 20px;
+}
+
+.book-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.book-detail-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.book-detail-header-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 16px;
+}
+.book-detail-header-actions a {
+  text-decoration: none;
+  color: #f6f6f6;
+  background-color: #626262;
+  padding: 8px 16px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+.book-detail-header-actions a:hover {
+  color: #000000;
+  background-color: #eee;
+}
+.book-detail-data table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.book-detail-data table th,
+.book-detail-data table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 18px;
+}
+.book-detail-data table th {
+  width: 200px;
+  background: #f0f0f0;
+  font-weight: 600;
+  color: #333;
+}
+.book-detail-data table tr:last-child td {
+  border-bottom: none;
+}
+.book-detail-data table tr:hover {
+  background: #f5f5f5;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.book-form-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+.book-form-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 400px;
+}
+.book-form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.book-form-label {
+  font-weight: bold;
+  color: #444;
+}
+.book-form-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+}
+.book-form-input:focus {
+  border-color: #888;
+  outline: none;
+}
+.book-form-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.book-form-button:hover {
+  background-color: #222;
+}
+
+/*# sourceMappingURL=book.css.map */
