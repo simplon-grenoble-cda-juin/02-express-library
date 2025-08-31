@@ -45,37 +45,6 @@
   background-color: #eee;
 }
 
-.flash {
-  position: fixed;
-  top: 73px;
-  right: 24px;
-  min-width: 300px;
-  max-width: 90%;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
-.flash-success {
-  background-color: #4caf50;
-}
-.flash-error {
-  background-color: #f44336;
-}
-.flash-close {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-left: 1rem;
-}
-
 .book-browse {
   display: flex;
   flex-direction: column;
@@ -266,6 +235,11 @@ body {
   gap: 80px;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin: 0;
+  padding: 0;
   font-family: system-ui, sans-serif;
 }
 
@@ -280,6 +254,10 @@ button,
 label,
 input {
   margin: 0;
+  padding: 0;
+}
+
+.page {
   padding: 0;
 }
 
