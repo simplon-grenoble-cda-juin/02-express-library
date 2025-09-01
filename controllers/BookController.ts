@@ -1,8 +1,14 @@
 import { Controller } from "../libs/Controller";
+import { BookRepository } from "../repositories/BookRepository";
 
 export class BookController extends Controller {
   // Route GET `/books` - liste des livres
   public async browseBooks() {
+    const bookRepository = new BookRepository();
+    const books = await bookRepository.findAll();
+
+    console.log(books);
+
     this.response.render("pages/books/browse.ejs", {
       books: [],
     });

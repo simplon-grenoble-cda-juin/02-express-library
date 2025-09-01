@@ -12,6 +12,8 @@ npm run build:all
 npm run dev
 ```
 
+Pensez à créer votre fichier d'environnement en copiant le fichier `.env.exemple` en un fichier `.env` et y mettre vos données sensibles.
+
 ℹ️ Assurez-vous d'avoir une base de données Postgresql `library` avec tables et données. Le script `/library.sql` est à votre disposition.
 
 💡 La branche `app_full` contient la version la plus aboutie du projet, avec des commentaires. N'hesitez pas à la consulter. [Lien vers la racine du dépôt, sur la branche `app_full`](https://github.com/simplon-grenoble-cda-juin/02-express-library/tree/app_full)
