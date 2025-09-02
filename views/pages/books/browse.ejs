@@ -9,6 +9,7 @@
       </div>
     </div>
 
+    <% if (books.length > 0) { %>
     <ul class="book-browse-list">
       <% books.forEach((book) => { %>
       <li class="book-browse-list-card">
@@ -26,6 +27,11 @@
       </li>
       <% }) %>
     </ul>
+    <% } %>
+
+    <% if (books.length === 0) { %>
+    <h2>Désolé les stocks sont vides</h2>
+    <% } %>
   </div>
 </main>
 
