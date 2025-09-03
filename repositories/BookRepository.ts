@@ -31,5 +31,30 @@ export class BookRepository extends Repository {
     }
   }
 
-  findById() {}
+  async findById(id: string): Promise<Book | null> {
+    const query = {
+      name: "fetch-book-by-id",
+      text: `SELECT * FROM book WHERE id = $1`,
+      values: [id],
+    };
+
+    try {
+      // [1] Soumission de la requête à la base de données
+      const result = await this.pool.query(query);
+
+      // [2] Transforme les données brutes en objets `Book`
+      const book = new Book(
+        result.rows[0].id,
+        result.rows[0].title,
+        result.rows[0].publisher_id,
+        result.rows[0].category_id,
+        result.rows[0].publication_year
+      );
+
+      // [3] Retourne une promesse d'un `Book`
+      return book;
+    } catch (error) {
+      return null;
+    }
+  }
 }

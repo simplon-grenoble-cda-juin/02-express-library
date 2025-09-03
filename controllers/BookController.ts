@@ -7,8 +7,6 @@ export class BookController extends Controller {
     const bookRepository = new BookRepository();
     const books = await bookRepository.findAll();
 
-    console.log(books);
-
     this.response.render("pages/books/browse.ejs", {
       books: [],
     });
@@ -16,6 +14,11 @@ export class BookController extends Controller {
 
   // Route GET `/books/:id` - détail d'un livre
   public async readBook() {
+    const researchedId = this.request.params.id;
+
+    const repository = new BookRepository();
+    const book = await repository.findById(researchedId);
+
     this.response.render("pages/books/read.ejs", {
       book: null,
     });

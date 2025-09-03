@@ -1,6 +1,8 @@
-<%- include("../../partials/head", { title: book.getTitle() }) %>
+<%- include("../../partials/head", { title: book && book.getTitle() ?
+book.getTitle() : "Livre introuvrable" }) %>
 
 <main class="page">
+  <% if (book !== null) { %>
   <div class="book-detail">
     <div class="book-detail-header">
       <h1 class="book-detail-header-title"><%= book.getTitle() %></h1>
@@ -40,6 +42,7 @@
       </table>
     </div>
   </div>
+  <% } %>
 </main>
 
 <%- include("../../partials/footer") %>
