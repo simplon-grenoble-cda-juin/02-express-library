@@ -13,7 +13,7 @@ export class AuthorRepository extends Repository {
       // [1] Soumission de la requête à la base de données
       const result = await this.pool.query(query);
 
-      // [2] Transforme les données brutes en objets `Book`
+      // [2] Transforme les données brutes en objets `Author`
       const data = result.rows.map((row) => {
         return new Author(row.id, row.first_name, row.last_name);
       });

@@ -1,6 +1,11 @@
+import z from "zod";
 import { Controller } from "../libs/Controller";
+import { bookSchema } from "../libs/validation/bookSchema";
 import { AuthorRepository } from "../repositories/AuthorRepository";
 import { BookRepository } from "../repositories/BookRepository";
+import { CategoryRepository } from "../repositories/CategoryRepository";
+import { PublisherRepository } from "../repositories/PublisherRepository";
+import { Book } from "../models/Book";
 
 export class BookController extends Controller {
   // Route GET `/books` - liste des livres
@@ -22,15 +27,20 @@ export class BookController extends Controller {
 
   // Route GET `/books/create` - formulaire de création d'un livre
   public async createBook() {
-    const authorRepository = new AuthorRepository()
-    const authors = await authorRepository.findAll()
+    const authorRepository = new AuthorRepository();
+    const categoryRepository = new CategoryRepository();
+    const publisherRepository = new PublisherRepository();
+
+    const authors = await authorRepository.findAll();
+    const categories = await categoryRepository.findAll();
+    const publishers = await publisherRepository.findAll();
 
     this.response.render("pages/books/form.ejs", {
       type: "create",
       values: {},
       authors: authors,
-      publishers: [],
-      categories: [],
+      publishers: publishers,
+      categories: categories,
       formErrors: {},
       submitError: false,
     });
@@ -38,6 +48,78 @@ export class BookController extends Controller {
 
   // Route POST `/books/create` - soumission du formulaire de création d'un livre
   public async createBookSubmission() {
+    // [1] Récupérer les données reçues via le formulaire
+    const formData = {
+      title: this.request.body?.title,
+      author_id: this.request.body?.author_id,
+      publisher_id: this.request.body?.publisher_id,
+      category_id: this.request.body?.category_id,
+      publication_year: this.request.body?.publication_year,
+    };
+
+    // [2] Valider les données
+    const validationResult = bookSchema.safeParse(formData);
+
+    // [2] Si les données sont invalides, on affiche le formulaire avec ses erreurs
+    if (!validationResult.success) {
+      const errors = z.treeifyError(validationResult.error);
+
+      const authorRepository = new AuthorRepository();
+      const categoryRepository = new CategoryRepository();
+      const publisherRepository = new PublisherRepository();
+
+      const authors = await authorRepository.findAll();
+      const categories = await categoryRepository.findAll();
+      const publishers = await publisherRepository.findAll();
+
+      return this.response.render("pages/books/form.ejs", {
+        type: "create",
+        values: this.request.body,
+        authors: authors,
+        publishers: publishers,
+        categories: categories,
+        formErrors: errors.properties,
+        submitError: false,
+      });
+    }
+
+    // [3] Les données sont valides, on créer l'objet `Book` pour l'enregistrement
+    const newBook = new Book(
+      null,
+      this.request.body.title,
+      this.request.body.author_id,
+      this.request.body.publisher_id,
+      this.request.body.category_id,
+      this.request.body.publication_year
+    );
+
+    // [3] On soumet les données à la base de données
+    const bookRepository = new BookRepository();
+    const result = await bookRepository.create(newBook);
+
+    // [3] Si l'enregistrement n'a pas fonctionné, on affiche le formulaire avec une erreur de soumission
+    if (!result) {
+      const authorRepository = new AuthorRepository();
+      const categoryRepository = new CategoryRepository();
+      const publisherRepository = new PublisherRepository();
+
+      const authors = await authorRepository.findAll();
+      const categories = await categoryRepository.findAll();
+      const publishers = await publisherRepository.findAll();
+
+      return this.response.render("pages/books/form.ejs", {
+        type: "create",
+        values: this.request.body,
+        authors: authors,
+        publishers: publishers,
+        categories: categories,
+        formErrors: {},
+        submitError: true,
+      });
+    }
+
+    // Ici, les données ont étaient validées et l'enregistrement s'est déroulé avec succès,
+    // alors on redirige l'utilisateur vers la liste des livres
     return this.response.redirect(303, `/books`);
   }
 

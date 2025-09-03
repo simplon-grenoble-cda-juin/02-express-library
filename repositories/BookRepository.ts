@@ -18,6 +18,7 @@ export class BookRepository extends Repository {
         return new Book(
           row.id,
           row.title,
+          row.author_id,
           row.publisher_id,
           row.publication_year,
           row.category
@@ -47,6 +48,7 @@ export class BookRepository extends Repository {
       const book = new Book(
         result.rows[0].id,
         result.rows[0].title,
+        result.rows[0].author_id,
         result.rows[0].publisher_id,
         result.rows[0].category_id,
         result.rows[0].publication_year
@@ -59,5 +61,34 @@ export class BookRepository extends Repository {
     }
   }
 
-  async create() {}
+  // Créer un enregistrement de livre
+  async create(book: Book) {
+    const query = {
+      name: "fetch-create-book",
+      text: `
+        INSERT INTO book
+        (title, publisher_id, category_id, publication_year)
+        VALUES
+        ($1, $2, $3, $4)
+      `,
+      values: [
+        book.getTitle(),
+        book.getPublisherId(),
+        book.getCategoryId(),
+        book.getPublicationYear,
+      ],
+    };
+
+    try {
+      // [1] Soumission de la requête à la base de données
+      await this.pool.query(query);
+
+      // [2] Retourne une promesse d'un `Book`
+      return book;
+    } catch (error) {
+      console.log(error);
+
+      return null;
+    }
+  }
 }
