@@ -4,8 +4,7 @@ import { BookRepository } from "../repositories/BookRepository";
 export class BookController extends Controller {
   // Route GET `/books` - liste des livres
   public async browseBooks() {
-    const bookRepository = new BookRepository();
-    const books = await bookRepository.findAll();
+    // ICI intéroger la base de données pour récupérer tous les livres
 
     this.response.render("pages/books/browse.ejs", {
       books: [],
@@ -14,11 +13,6 @@ export class BookController extends Controller {
 
   // Route GET `/books/:id` - détail d'un livre
   public async readBook() {
-    const researchedId = this.request.params.id;
-
-    const repository = new BookRepository();
-    const book = await repository.findById(researchedId);
-
     this.response.render("pages/books/read.ejs", {
       book: null,
     });

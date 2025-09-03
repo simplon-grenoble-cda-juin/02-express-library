@@ -19,7 +19,8 @@
   "dependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.4",
-    "dotenv": "^17.2.1",
+    "@types/pg": "^8.15.5",
+    "dotenv": "^17.2.2",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "pg": "^8.16.3",
@@ -31,7 +32,6 @@
     "zod": "^4.0.17"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/pg": "^8.15.5"
+    "@types/express": "^5.0.3"
   }
 }
