@@ -2,6 +2,7 @@ import Express from "express";
 import router from "./routes";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { Database } from "./libs/Database";
 
 const app = Express();
 const PORT = 3000;
