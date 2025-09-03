@@ -1,10 +1,12 @@
 import { Controller } from "../libs/Controller";
+import { AuthorRepository } from "../repositories/AuthorRepository";
 import { BookRepository } from "../repositories/BookRepository";
 
 export class BookController extends Controller {
   // Route GET `/books` - liste des livres
   public async browseBooks() {
-    // ICI intéroger la base de données pour récupérer tous les livres
+    const repository = new BookRepository();
+    repository.findAll();
 
     this.response.render("pages/books/browse.ejs", {
       books: [],
@@ -20,10 +22,13 @@ export class BookController extends Controller {
 
   // Route GET `/books/create` - formulaire de création d'un livre
   public async createBook() {
+    const authorRepository = new AuthorRepository()
+    const authors = await authorRepository.findAll()
+
     this.response.render("pages/books/form.ejs", {
       type: "create",
       values: {},
-      authors: [],
+      authors: authors,
       publishers: [],
       categories: [],
       formErrors: {},

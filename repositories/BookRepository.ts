@@ -14,23 +14,24 @@ export class BookRepository extends Repository {
       const result = await this.pool.query(query);
 
       // [2] Transforme les données brutes en objets `Book`
-      const clearResult = result.rows.map((row) => {
+      const data = result.rows.map((row) => {
         return new Book(
           row.id,
           row.title,
           row.publisher_id,
-          row.category_id,
-          row.publication_year
+          row.publication_year,
+          row.category
         );
       });
 
       // [3] Retourne une promesse d'un tableau de `Book`
-      return clearResult;
+      return data;
     } catch (error) {
       return [];
     }
   }
 
+  // Récupère un livre via son ID
   async findById(id: string): Promise<Book | null> {
     const query = {
       name: "fetch-book-by-id",
@@ -57,4 +58,6 @@ export class BookRepository extends Repository {
       return null;
     }
   }
+
+  async create() {}
 }

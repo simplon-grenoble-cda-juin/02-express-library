@@ -5,3 +5,5 @@ public/css/*
 
 public/js/*
 !public/js/.gitkeep
+
+.env
